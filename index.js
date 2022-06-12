@@ -5,6 +5,9 @@ const PORT = 8000;
 const db = require('./config/mongoose');
 
 
+app.use(express.urlencoded());
+
+
 // Binding Router Folder to use routes
 app.use("/", require("./router"));
 

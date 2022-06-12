@@ -19,3 +19,8 @@ const optionSchecma = mongoose.Schema(
     timestamps: true,
   }
 );
+
+
+const Options = mongoose.model("Options", optionSchecma);
+
+module.exports = Options;
