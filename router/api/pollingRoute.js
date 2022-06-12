@@ -1,14 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const pollingController = require('../../controllers/api/pollingController')
+
+// calling post controller
+const pollingController = require("../../controllers/api/pollingController");
 
 
 
 
-router.post('/questions/create',pollingController.createQuestion)
+// router for adding a question
+router.post("/questions/create", pollingController.createQuestion);
 
-
-
-
+// router for deleting a question
+router.delete("/questions/:id/delete", pollingController.destroyQuestion);
 
 module.exports = router;

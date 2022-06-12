@@ -1,13 +1,19 @@
+// calling Database models
 const Question = require("../../models/question");
 const Options = require("../../models/options");
 
+
+
+// controller for creating a question
 module.exports.createQuestion =async (req, res) => {
     try{
+
+        // storing question from post request
         let question = await Question.create({
             content: req.body.content
         });
 
-
+        // Sending Response if data storage is successful
         return res.json(200, {
             message: 'Question is Created and stored in Database',
             data:  {
@@ -26,3 +32,31 @@ module.exports.createQuestion =async (req, res) => {
     }
 };
 
+
+//  controller for deleting a question
+module.exports.destroyQuestion = async (req,res) => {
+    try{
+
+        // finding id from params and fining data from database
+        let question = await Question.findById(req.params.id);
+
+        // if data found 
+        if(question){
+            question.remove();
+            await Options.deleteMany({question: req.params.id});
+            return res.json(200, {
+                message: "Question and Associated Options are Deleted!"
+            });
+        // if data not found 
+        }else{
+            return res.json(404, {
+                message: "Question with Given Id is Not in Database"
+            });
+        }
+    }catch(err){
+        console.log('********', err);
+        return res.json(500, {
+            message: "Internal Server Error"
+        });
+    }
+}
