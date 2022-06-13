@@ -16,3 +16,4 @@ Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 ### `6. Setup Contoller and Routes for Deleting a Question`
 ### `7. Setup Contoller and Routes for Adding a option to a Question`
 ### `8. Setup Contoller and Routes for Deleting a Option  from  a Question`
+### `9. Setup Contoller and Routes for Adding Vote to option`

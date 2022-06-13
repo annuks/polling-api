@@ -68,6 +68,7 @@ module.exports.destroyQuestion = async (req,res) => {
 module.exports.addOptionToQuestion = async (req,res) => {
     try{
 
+        WEB_URL = process.env.WEB_URL;
         // finding id from params and fining data from database
         let question = await Question.findById(req.params.id);
 
@@ -76,8 +77,10 @@ module.exports.addOptionToQuestion = async (req,res) => {
             
             let option = await Options.create({
                 content : req.body.content,
-                question : question 
+                question : question,
             });
+            option.link_to_vote = `${WEB_URL}/options/${option._id}/add_vote`
+            option.save();
 
             question.options.push(option);
             question.save();
@@ -87,9 +90,9 @@ module.exports.addOptionToQuestion = async (req,res) => {
                 data:  {
                     option: {
                         question: question.content,
-                        content : option.content,
-                        optionid: option._id,
                         questionid: question._id,
+                        option : option.centent,
+                        link_to_vote : option.link_to_vote
                     }
                 }
             });
@@ -126,6 +129,38 @@ module.exports.destroyOption = async (req,res) => {
             
             return res.json(200, {
                 message: "Option and Question option Associated with Options are Deleted!"
+            });
+        // if data not found 
+        }else{
+            return res.json(404, {
+                message: "Option with Given Id is Not in Database"
+            });
+        }
+    }catch(err){
+        console.log('********', err);
+        return res.json(500, {
+            message: "Internal Server Error"
+        });
+    }
+}
+
+
+
+//  controller for adding vote to a option for a question
+module.exports.addVote = async (req,res) => {
+    try{
+
+        // finding id from params and fining data from database
+        let option = await Options.findById(req.params.id);
+
+        // if data found 
+        if(option){
+            option.vote += 1;
+            option.save();
+
+            
+            return res.json(200, {
+                message: "Vote to a option for a question is added"
             });
         // if data not found 
         }else{

@@ -14,12 +14,14 @@ const optionSchecma = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Question",
     },
+    link_to_vote: {
+      type: String
+    },
   },
   {
     timestamps: true,
   }
 );
-
 
 const Options = mongoose.model("Options", optionSchecma);
 
