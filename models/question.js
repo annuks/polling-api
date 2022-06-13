@@ -10,7 +10,7 @@ const questionSchema = new mongoose.Schema(
     options: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Option",
+        ref: "Options",
       },
     ],
   },

@@ -177,3 +177,64 @@ module.exports.addVote = async (req,res) => {
 }
 
 
+
+
+// controller for view a question and associated option
+module.exports.viewQuestionWithOptions =async (req,res) => {
+    try {
+
+        // finding id from params and fining data from database
+        let question = await Question.findById(req.params.id)
+        .populate('options')
+        if(question){
+            return res.json(200, {
+                message : "Question and associated options",
+                data : question
+            })
+        }
+        // if data not found 
+        else{
+            return res.json(500,{
+                message : "Quetion with Provided Id Not Found",
+            })
+        }
+
+
+        
+    } catch (error) {
+        console.log(`***** ${error}`);
+        return res.json(500 , {
+            message: "Internal Server Error"
+        })
+    }
+}
+
+// controller for view all question and its ids
+module.exports.viewQuestion =async (req,res) => {
+    try {
+
+        // finding all question from from database
+        let question = await Question.find({})
+        .populate('options')
+        if(question){
+            return res.json(200, {
+                message : "Question and associated options",
+                data : question
+            })
+        }
+        // if data not found 
+        else{
+            return res.json(500,{
+                message : "Quetion Not Found",
+            })
+        }
+
+
+        
+    } catch (error) {
+        console.log(`***** ${error}`);
+        return res.json(500 , {
+            message: "Internal Server Error"
+        })
+    }
+}

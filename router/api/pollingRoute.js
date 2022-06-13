@@ -22,5 +22,11 @@ router.delete("/options/:id/delete", pollingController.destroyOption);
 // router for adding vote to an option from a questiom
 router.get("/options/:id/add_vote", pollingController.addVote);
 
+// router for viewing question and its options
+router.get("/questions/:id", pollingController.viewQuestionWithOptions);
+
+// royter for viewing all question and its id
+router.get("/questions", pollingController.viewQuestion);
+
 
 module.exports = router;
