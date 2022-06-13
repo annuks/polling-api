@@ -60,3 +60,49 @@ module.exports.destroyQuestion = async (req,res) => {
         });
     }
 }
+
+
+
+
+// controller for adding option to a question
+module.exports.addOptionToQuestion = async (req,res) => {
+    try{
+
+        // finding id from params and fining data from database
+        let question = await Question.findById(req.params.id);
+
+        // if data found 
+        if(question){
+            
+            let option = await Options.create({
+                content : req.body.content,
+                question : question 
+            });
+
+            question.options.push(option);
+            question.save();
+        
+            return res.json(200, {
+                message: "Option is Added to Question",
+                data:  {
+                    option: {
+                        question: question.content,
+                        content : option.content,
+                        optionid: option._id,
+                        questionid: question._id,
+                    }
+                }
+            });
+        // if data not found 
+        }else{
+            return res.json(404, {
+                message: "Question with Given Id is Not in Database"
+            });
+        }
+    }catch(err){
+        console.log('********', err);
+        return res.json(500, {
+            message: "Internal Server Error"
+        });
+    }
+}

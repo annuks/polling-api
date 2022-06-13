@@ -13,4 +13,8 @@ router.post("/questions/create", pollingController.createQuestion);
 // router for deleting a question
 router.delete("/questions/:id/delete", pollingController.destroyQuestion);
 
+//router for adding a option
+router.post("/questions/:id/options/create",pollingController.addOptionToQuestion);
+
+
 module.exports = router;
