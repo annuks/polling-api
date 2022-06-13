@@ -14,7 +14,7 @@ app.use("/", require("./router"));
 
 
 // Starting server
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || PORT, (err) => {
   if (err) {
     console.log("Error in Running Express Server");
   }

@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "This is a Polling Api Where You can Add a Question and Option to Question and Vote to Options",
   "main": "index.js",
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
+  },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
