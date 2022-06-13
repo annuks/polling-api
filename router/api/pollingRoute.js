@@ -16,5 +16,8 @@ router.delete("/questions/:id/delete", pollingController.destroyQuestion);
 //router for adding a option
 router.post("/questions/:id/options/create",pollingController.addOptionToQuestion);
 
+// router for deleting an option from a questiom
+router.delete("/options/:id/delete", pollingController.destroyOption);
+
 
 module.exports = router;

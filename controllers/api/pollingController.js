@@ -106,3 +106,39 @@ module.exports.addOptionToQuestion = async (req,res) => {
         });
     }
 }
+
+
+
+
+//  controller for deleting a option from a question
+module.exports.destroyOption = async (req,res) => {
+    try{
+
+        // finding id from params and fining data from database
+        let option = await Options.findById(req.params.id);
+
+        // if data found 
+        if(option){
+            let quesId = option.question;
+            let question =await Question.findByIdAndUpdate(quesId , { $pull: {options: req.params.id}});
+            option.remove();
+
+            
+            return res.json(200, {
+                message: "Option and Question option Associated with Options are Deleted!"
+            });
+        // if data not found 
+        }else{
+            return res.json(404, {
+                message: "Option with Given Id is Not in Database"
+            });
+        }
+    }catch(err){
+        console.log('********', err);
+        return res.json(500, {
+            message: "Internal Server Error"
+        });
+    }
+}
+
+
