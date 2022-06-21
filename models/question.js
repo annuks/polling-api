@@ -1,5 +1,7 @@
+// calling mongoose
 const mongoose = require("mongoose");
 
+// creating question schema
 const questionSchema = new mongoose.Schema(
   {
     content: {
@@ -10,7 +12,7 @@ const questionSchema = new mongoose.Schema(
     options: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Options",
+        ref: "Options",                   //relating Options models
       },
     ],
   },
@@ -19,6 +21,10 @@ const questionSchema = new mongoose.Schema(
   }
 );
 
+
+// telling mogoose about schema
 const Question = mongoose.model("Question", questionSchema);
 
+
+// exporting the database schema
 module.exports = Question;

@@ -33,6 +33,7 @@ module.exports.createQuestion =async (req, res) => {
 };
 
 
+
 //  controller for deleting a question
 module.exports.destroyQuestion = async (req,res) => {
     try{
@@ -47,6 +48,7 @@ module.exports.destroyQuestion = async (req,res) => {
             return res.json(200, {
                 message: "Question and Associated Options are Deleted!"
             });
+            
         // if data not found 
         }else{
             return res.json(404, {

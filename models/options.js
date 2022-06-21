@@ -1,5 +1,8 @@
+// calling  mongoose
 const mongoose = require("mongoose");
 
+
+// creating option schema
 const optionSchecma = mongoose.Schema(
   {
     content: {
@@ -12,7 +15,7 @@ const optionSchecma = mongoose.Schema(
     },
     question: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Question",
+      ref: "Question",                          //relating Question models
     },
     link_to_vote: {
       type: String
@@ -23,6 +26,10 @@ const optionSchecma = mongoose.Schema(
   }
 );
 
+
+// telling mogoose about schema
 const Options = mongoose.model("Options", optionSchecma);
 
+
+// exporting the database schema
 module.exports = Options;

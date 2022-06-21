@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express");         //fetching express 
+const router = express.Router();            //fetching roter from express 
 
 // calling post controller
 const pollingController = require("../../controllers/api/pollingController");
@@ -29,4 +29,5 @@ router.get("/questions/:id", pollingController.viewQuestionWithOptions);
 router.get("/questions", pollingController.viewQuestion);
 
 
+// exporting router
 module.exports = router;

@@ -1,12 +1,15 @@
+// calling express server
 const express = require('express');
-const router = express.Router();
+
+// fetching router from express server
+const router = express.Router();    
 
 
 
 
-
+// sending data to our home page
 router.get('/',(req, res) => {
-    res.send(`<h1>POLLING API PROJECT</h1>
+    res.send(`<h1 style="color:red;">POLLING API PROJECT</h1>
     <p>
     -	/questions/create  (To create a question)<br>
     -	/questions/:id/options/create  (To add options to a specific question)<br>
@@ -18,8 +21,9 @@ router.get('/',(req, res) => {
 })
 
 
+// using all the api url using middleware
 router.use('/',require('./api/pollingRoute'));
 
 
-
+// exporting router
 module.exports = router;
