@@ -11,12 +11,12 @@ const router = express.Router();
 router.get('/',(req, res) => {
     res.send(`<h1 style="color:red;">POLLING API PROJECT</h1>
     <p>
-    -	/questions/create  (To create a question)<br>
-    -	/questions/:id/options/create  (To add options to a specific question)<br>
-    -	/questions/:id/delete (To delete a question)<br>
-    -	/options/:id/delete (To delete an option)<br>
-    -	/options/:id/add_vote (To increment the count of votes)<br>
-    -	/questions/:id (To view a question and it’s options<br>
+    -	/questions/create  (To create a question) ----- You have to pass data in x-www-urlencoded format using <b>POST request</b><br>
+    -	/questions/:id/options/create  (To add options to a specific question)  ----- You have to pass data in x-www-urlencoded format using <b>POST request</b><br>
+    -	/questions/:id/delete (To delete a question) ----- You have to send url <b>DELETE request</b><br>
+    -	/options/:id/delete (To delete an option)    ----- You have to send url <b>DELETE request</b><br>
+    -	/options/:id/add_vote (To increment the count of votes)  ----- You have to send url <b>GET request</b><br>
+    -	/questions/:id (To view a question and it’s options ----- You have to send url <b>GET request</b><br>
     </p>`)
 })
 
